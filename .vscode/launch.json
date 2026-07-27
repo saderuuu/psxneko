@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug",
+      "type": "cppdbg",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "MIMode": "gdb",
+      "targetArchitecture": "mips",
+      "miDebuggerPath": "gdb-multiarch",
+      "miDebuggerServerAddress": "localhost:3333",
+      "stopAtConnect": true,
+      "windows": {
+        "miDebuggerPath": "gdb-multiarch.exe"
+      },
+      "osx": {
+        "miDebuggerPath": "gdb"
+      },
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        },
+        {
+          "text": "cd ${workspaceFolder}"
+        },
+        {
+          "text": "set substitute-path /project ."
+        }
+      ],
+      "launchCompleteCommand": "None",
+      "visualizerFile": "${workspaceFolder}/src/mips/psyqo/psyqo.natvis",
+      "showDisplayString": true,
+      "program": "${workspaceFolder}/${workspaceRootFolderName}.elf",
+      "postRemoteConnectCommands": [
+        {
+          "text": "monitor reset shellhalt"
+        },
+        {
+          "text": "load ./${workspaceRootFolderName}.elf"
+        }
+      ]
+    }
+  ]
+}
